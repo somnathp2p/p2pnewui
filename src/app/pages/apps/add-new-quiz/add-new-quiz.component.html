@@ -1,0 +1,315 @@
+
+  
+  <div @stagger class="p-gutter" p2pContainer>
+  
+    
+  
+    <h2 class="title mt-6 mb-4" fxLayout="row" fxLayoutAlign="start center">
+      <span @scaleIn class="w-10 h-10 rounded-full text-primary mr-3 flex items-center justify-center bg-primary-light">
+        <ic-icon [icon]="icVerticalSplit" height="20px" width="20px"></ic-icon>
+      </span>
+      <span @fadeInRight class="block">Add New Quiz</span>
+    </h2>
+  
+    <div @fadeInUp class="card overflow-hidden">
+      <mat-vertical-stepper #verticalStepper="matVerticalStepper" [linear]="true">
+        <ng-template matStepperIcon="edit">
+          <mat-icon [icIcon]="icDoneAll"></mat-icon>
+        </ng-template>
+  
+        <ng-template matStepperIcon="done">
+          <mat-icon [icIcon]="icDoneAll"></mat-icon>
+        </ng-template>
+
+        <mat-step [stepControl]="verticalTypeFormGroup">
+            <form [formGroup]="verticalTypeFormGroup">
+              <ng-template matStepLabel>Select Quiz Type</ng-template>
+              <div class="mt-2" fxLayout="column" fxLayoutGap="8px">
+               
+                
+                    <mat-radio-group formControlName="Qtype" color="accent" fxLayout="column" fxLayoutGap="16px">
+                      <mat-radio-button class="radio"  color="primary" value="primary">Objective
+                      </mat-radio-button>
+                      <mat-radio-button class="radio"  value="accent">Subjective</mat-radio-button>
+                      <mat-radio-button class="radio"  color="warn" value="warn">Upload Assignment</mat-radio-button>
+                    </mat-radio-group>
+                   
+                
+                   
+                
+              </div>
+    
+              <div class="actions" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+                <button (click)="verticalStepper.reset()" [disabled]="verticalTypeFormGroup.pristine" color="primary"
+                        mat-button
+                        type="button">RESET
+                </button>
+                <button [disabled]="verticalTypeFormGroup.invalid" color="primary" mat-raised-button matStepperNext>
+                  NEXT
+                </button>
+              </div>
+            </form>
+          </mat-step>
+  
+        <mat-step [stepControl]="verticalAccountFormGroup">
+          <form [formGroup]="verticalAccountFormGroup">
+            <ng-template matStepLabel>Privide Quiz information</ng-template>
+  
+            
+  
+            <div class="mt-4" fxLayout="column" fxLayoutGap="8px">
+              <mat-form-field fxFlex="auto">
+                <mat-label>Standard *</mat-label>
+                <mat-select formControlName="standerd">
+                  <mat-option *ngFor="let option of phonePrefixOptions" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+               
+              </mat-form-field>
+  
+              <mat-form-field fxFlex="auto">
+                <mat-label>Subject *</mat-label>
+                <mat-select formControlName="subject">
+                  <mat-option *ngFor="let option of phonePrefixOptions" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field fxFlex="auto">
+                <mat-label>Topic *</mat-label>
+                <mat-select formControlName="topic">
+                  <mat-option *ngFor="let option of phonePrefixOptions" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field fxFlex="subtopic">
+                <mat-label>SubTopic</mat-label>
+                <mat-select formControlName="subtopic">
+                  <mat-option *ngFor="let option of phonePrefixOptions" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field fxFlex="auto">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option *ngFor="let option of phonePrefixOptions" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+      
+
+              <mat-form-field fxFlex="auto">
+                <mat-label>Level</mat-label>
+                <mat-select formControlName="level">
+                  <mat-option *ngFor="let option of phonePrefixOptions" [value]="option">{{ option }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field fxFlex="auto">
+                <mat-label>Quiz Description (Max: 250 characters)</mat-label>
+                <textarea formControlName="desc" matInput></textarea>
+              </mat-form-field>
+
+              <mat-form-field fxFlex="auto">
+                <mat-label>Questions To Generate</mat-label>
+                <input types="number" formControlName="noOfQ" matInput required>
+              </mat-form-field>
+  
+              
+            </div>
+  
+            <div class="actions" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+              <button (click)="verticalStepper.reset()" [disabled]="verticalAccountFormGroup.pristine" color="primary"
+                      mat-button
+                      type="button">RESET
+              </button>
+              <button [disabled]="verticalAccountFormGroup.invalid" color="primary" mat-raised-button matStepperNext>
+                NEXT
+              </button>
+            </div>
+          </form>
+        </mat-step>
+  
+        <mat-step [stepControl]="verticalPasswordFormGroup">
+          <form [formGroup]="verticalPasswordFormGroup">
+            <ng-template matStepLabel>Select Questions Set</ng-template>
+  
+            
+            <div class="mt-4" fxLayout="column" fxLayoutGap="8px">
+              <p2p-page-layout-content [class.container]="layoutCtrl.value === 'boxed'"
+                           [class.px-gutter]="layoutCtrl.value === 'fullwidth'"
+                           class="">
+
+    <div class="card overflow-auto">
+      <div class="bg-app-bar px-6 h-16 border-b sticky left-0" fxLayout="row" fxLayoutAlign="start center">
+        <h2 class="title my-0 ltr:pr-4 rtl:pl-4 ltr:mr-4 rtl:ml-4 ltr:border-r rtl:border-l" fxFlex="none" fxHide.xs>
+          <span *ngIf="selection.isEmpty()">Quiz</span>
+          <span *ngIf="selection.hasValue()">{{ selection.selected.length }}
+            Question<span *ngIf="selection.selected.length > 1">s</span> selected</span>
+        </h2>
+
+        
+
+        <div class="bg-card rounded-full border px-4"
+             fxFlex="400px"
+             fxFlex.lt-md="auto"
+             fxHide.xs
+             fxLayout="row"
+             fxLayoutAlign="start center">
+          <ic-icon [icIcon]="icSearch" size="20px"></ic-icon>
+          <input [formControl]="searchCtrl"
+                 class="px-4 py-3 border-0 outline-none w-full bg-transparent"
+                 placeholder="Search..."
+                 type="search">
+        </div>
+
+        <span fxFlex></span>
+
+        <button class="ml-4" fxFlex="none" fxHide.gt-xs mat-icon-button type="button">
+          <mat-icon [icIcon]="icSearch"></mat-icon>
+        </button>
+
+      
+
+        
+      </div>
+
+      <table @stagger [dataSource]="dataSource" class="w-full" mat-table matSort>
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="checkbox">
+          <th *matHeaderCellDef mat-header-cell>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          color="primary">
+            </mat-checkbox>
+          </th>
+          <td *matCellDef="let row" class="w-4" mat-cell>
+            <mat-checkbox (change)="$event ? selection.toggle(row) : null"
+                          (click)="$event.stopPropagation()"
+                          [checked]="selection.isSelected(row)"
+                          color="primary">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Image Column -->
+        <ng-container matColumnDef="image">
+          <th *matHeaderCellDef mat-header-cell></th>
+          <td *matCellDef="let row" class="min-w-64 pr-0" mat-cell>
+            <img [src]="row['imageSrc']" class="w-64 align-middle">
+          </td>
+        </ng-container>
+
+        <!-- Text Columns -->
+        <ng-container *ngFor="let column of columns; trackBy: trackByProperty">
+          <ng-container *ngIf="column.type === 'text'" [matColumnDef]="column.property">
+            <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header> {{ column.label }}</th>
+            <td *matCellDef="let row" [ngClass]="column.cssClasses" mat-cell>{{ row[column.property] }}</td>
+          </ng-container>
+        </ng-container>
+
+        <!-- Contact Column -->
+        <ng-container matColumnDef="contact">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header></th>
+          <td *matCellDef="let row" mat-cell>
+            <div class="flex">
+              <a (click)="$event.stopPropagation()"
+                 class="w-8 h-8 leading-none flex items-center justify-center hover:bg-hover text-primary bg-primary-light"
+                 mat-icon-button>
+                <mat-icon [icIcon]="icPhone" size="18px"></mat-icon>
+              </a>
+
+              <a (click)="$event.stopPropagation()"
+                 class="w-8 h-8 leading-none flex items-center justify-center ml-1 hover:bg-hover text-teal bg-teal-light"
+                 mat-icon-button>
+                <mat-icon [icIcon]="icMail" size="18px"></mat-icon>
+              </a>
+
+              <a (click)="$event.stopPropagation()"
+                 class="w-8 h-8 leading-none flex items-center justify-center ml-1 hover:bg-hover text-green bg-green-light"
+                 mat-icon-button>
+                <mat-icon [icIcon]="icMap" size="18px"></mat-icon>
+              </a>
+            </div>
+          </td>
+        </ng-container>
+
+       
+        <!-- Label Column -->
+        <ng-container matColumnDef="labels">
+          <th *matHeaderCellDef class="uppercase" mat-header-cell mat-sort-header>Labels</th>
+          <td *matCellDef="let row" mat-cell>
+            <div (click)="$event.stopPropagation()" fxLayoutAlign="start center" fxLayoutGap="4px">
+              <div *ngFor="let label of row.labels"
+                   [ngClass]="[label.textClass, label.bgClass]"
+                   class="rounded px-2 py-1 font-medium text-xs"
+                   fxFlex="none">
+                {{ label.text }}
+
+              </div>
+              <div (click)="labelSelect.open()"
+                   class="text-secondary bg-base text-hint cursor-pointer hover:bg-hover"
+                   fxFlex="none"
+                   fxLayout="row"
+                   fxLayoutAlign="center center">
+                <ic-icon [icon]="icAdd" size="18px"></ic-icon>
+              </div>
+              <mat-select #labelSelect="matSelect"
+                          (selectionChange)="onLabelChange($event, row)"
+                          [value]="row.labels"
+                          class="invisible w-0 h-0 text-sm"
+                          fxFlex="0 1 0px"
+                          multiple>
+                <mat-option *ngFor="let label of labels" [value]="label">
+                  <div [ngClass]="label.previewClass"
+                       class="h-6 w-6 align-middle ltr:mr-2 rtl:ml-2 rounded inline-block"></div>
+                  <span>{{ label.text }}</span>
+                </mat-option>
+              </mat-select>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="actions">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header></th>
+          <td *matCellDef="let row" class="w-10 text-secondary" mat-cell>
+           
+              
+           
+          </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="visibleColumns" mat-header-row></tr>
+        <tr 
+            *matRowDef="let row; columns: visibleColumns;"
+            @fadeInUp
+            class="hover:bg-hover trans-ease-out cursor-pointer"
+            mat-row></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageSize]="pageSize" class="sticky left-0"></mat-paginator>
+    </div>
+
+  </p2p-page-layout-content>
+        
+            </div>
+  
+            <div class="actions" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+              <button color="primary" mat-button matStepperPrevious type="button">PREVIOUS</button>
+              <button color="primary" mat-raised-button matStepperNext>
+                NEXT
+              </button>
+            </div>
+          </form>
+        </mat-step>
+  
+      
+      </mat-vertical-stepper>
+    </div>
+  </div>
+  
+  

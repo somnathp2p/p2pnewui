@@ -1,0 +1,222 @@
+<div fxLayout="column">
+  <div
+    class="py-4 px-gutter"
+    fxFlex="none"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    p2pContainer
+  >
+    <h1 class="title m-0">Dashboard</h1>
+
+    <span fxFlex></span>
+  </div>
+
+  <div
+    @stagger
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    class="px-gutter pb-gutter min-h-0 overflow-x-auto"
+    fxFlex="auto"
+    fxLayout="row"
+    fxLayoutAlign="start start"
+    fxLayoutGap="24px"
+    p2pContainer
+  >
+    <div
+      @fadeInUp
+      cdkDrag
+      cdkDropListGroup
+      class="rounded bg-app-bar overflow-hidden max-h-full w-full max-w-xxs"
+      fxFlex="none"
+      fxLayout="column"
+    >
+      <div cdkDragHandle class="p-4 cursor-pointer" fxFlex="none">
+        <h2 class="subheading-2 font-medium m-0 select-none" fxFlex="none">
+          Classes
+        </h2>
+      </div>
+
+      <p2p-scrollbar class="flex-auto">
+        <div cdkDropList class="px-4 pb-4" id="1">
+          <div
+            cdkDrag
+            class="scrumboard-card card w-full cursor-pointer overflow-hidden"
+          >
+            <div class="w-full h-40 overflow-hidden">
+              <img
+                src="../../../../../assets/img/class.png"
+                class="object-cover w-full h-full"
+              />
+            </div>
+
+            <div class="p-4">
+              <div class="mb-2" fxLayout="row" fxLayoutGap="8px">
+                <div class="label" fxFlex></div>
+              </div>
+
+              <h3 class="body-2 m-0 select-none">Standard 6</h3>
+              <h3 class="body-2 m-0 select-none">Students 40</h3>
+
+              <div class="mt-2" fxLayout="row" fxLayoutGap="8px"></div>
+            </div>
+          </div>
+          <div
+            cdkDrag
+            class="scrumboard-card card w-full cursor-pointer overflow-hidden"
+          >
+            <div class="w-full h-40 overflow-hidden">
+              <img
+                src="../../../../../assets/img/class.png"
+                class="object-cover w-full h-full"
+              />
+            </div>
+
+            <div class="p-4">
+              <div class="mb-2" fxLayout="row" fxLayoutGap="8px">
+                <div class="label" fxFlex></div>
+              </div>
+
+              <h3 class="body-2 m-0 select-none">Standard 7</h3>
+              <h3 class="body-2 m-0 select-none">Students 60</h3>
+
+              <div class="mt-2" fxLayout="row" fxLayoutGap="8px"></div>
+            </div>
+          </div>
+        </div>
+      </p2p-scrollbar>
+    </div>
+
+    <div
+      @fadeInUp
+      cdkDrag
+      cdkDropListGroup
+      class="rounded bg-app-bar overflow-hidden max-h-full w-full max-w-xxs"
+      fxFlex="none"
+      fxLayout="column"
+    >
+      <div cdkDragHandle class="p-4 cursor-pointer" fxFlex="none">
+        <h2 class="subheading-2 font-medium m-0 select-none" fxFlex="none">
+          Quiz
+        </h2>
+      </div>
+
+      <p2p-scrollbar class="flex-auto">
+        <div cdkDropList class="px-4 pb-4" id="2">
+          <div
+            cdkDrag
+            class="scrumboard-card card w-full cursor-pointer overflow-hidden"
+          >
+            <div class="w-full h-40 overflow-hidden">
+              <img
+                src="../../../../../assets/img/quiz.png"
+                class="object-cover w-full h-full"
+              />
+            </div>
+
+            <div class="p-4">
+              <div class="mb-2" fxLayout="row" fxLayoutGap="8px">
+                <div class="label" fxFlex></div>
+              </div>
+
+              <h3 class="body-2 m-0 select-none">Total Quiz - 40</h3>
+              <button
+                _ngcontent-hxq-c284=""
+                mat-raised-button=""
+                type="button"
+                class="mat-focus-indicator ng-tns-c284-100 mat-raised-button mat-button-base mt-3 bg-green text-contrast-white"
+                ng-reflect-ng-class="bg-green,text-contrast-white"
+                style="margin-right: 12px"
+              >
+                <span class="mat-button-wrapper">Add New Quiz</span
+                ><span
+                  matripple=""
+                  class="mat-ripple mat-button-ripple"
+                  ng-reflect-disabled="false"
+                  ng-reflect-centered="false"
+                  ng-reflect-trigger="[object HTMLButtonElement]"
+                ></span
+                ><span class="mat-button-focus-overlay"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </p2p-scrollbar>
+    </div>
+
+    <div
+      @fadeInUp
+      cdkDrag
+      cdkDropListGroup
+      class="rounded bg-app-bar overflow-hidden max-h-full w-full max-w-xxs"
+      fxFlex="none"
+      fxLayout="column"
+    >
+      <div cdkDragHandle class="p-4 cursor-pointer" fxFlex="none">
+        <h2 class="subheading-2 font-medium m-0 select-none" fxFlex="none">
+          Student's Results
+        </h2>
+      </div>
+
+      <p2p-scrollbar class="flex-auto">
+        <div cdkDropList class="px-4 pb-4" id="2">
+          <div
+            cdkDrag
+            class="scrumboard-card card w-full cursor-pointer overflow-hidden"
+          >
+            <div class="w-full h-40 overflow-hidden">
+              <img
+                src="../../../../../assets/img/result2.png"
+                class="object-cover w-full h-full"
+              />
+            </div>
+
+            <div class="p-4">
+              <div class="mb-2" fxLayout="row" fxLayoutGap="8px">
+                <div class="label" fxFlex></div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </p2p-scrollbar>
+    </div>
+
+    <div
+    @fadeInUp
+    cdkDrag
+    cdkDropListGroup
+    class="rounded bg-app-bar overflow-hidden max-h-full w-full max-w-xxs"
+    fxFlex="none"
+    fxLayout="column"
+  >
+    <div cdkDragHandle class="p-4 cursor-pointer" fxFlex="none">
+      <h2 class="subheading-2 font-medium m-0 select-none" fxFlex="none">
+        Recent Quiz Attempts
+      </h2>
+    </div>
+
+    <p2p-scrollbar class="flex-auto">
+      <div cdkDropList class="px-4 pb-4" id="2">
+        <div
+          cdkDrag
+          class="scrumboard-card card w-full cursor-pointer overflow-hidden"
+        >
+          <div class="w-full h-40 overflow-hidden">
+            <img
+              src="../../../../../assets/img/result.png"
+              class="object-cover w-full h-full"
+            />
+          </div>
+
+          <div class="p-4">
+            <div class="mb-2" fxLayout="row" fxLayoutGap="8px">
+              <div class="label" fxFlex></div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </p2p-scrollbar>
+  </div>
+  </div>
+</div>

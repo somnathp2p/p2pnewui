@@ -1,0 +1,67 @@
+<div class="toolbar w-full px-gutter" fxLayout="row" fxLayoutAlign="start center" p2pContainer>
+  <button (click)="openSidenav()" [fxHide]="!mobileQuery" mat-icon-button type="button">
+    <mat-icon [icIcon]="icMenu"></mat-icon>
+  </button>
+
+  <a *ngIf="isVerticalLayout$ | async"
+     [routerLink]="['/']"
+     class="ltr:mr-4 rtl:ml-4 block"
+     fxLayout="row"
+     fxLayoutAlign="start center">
+    <img class="logo select-none" src="assets/img/practice2perfection.png">
+    
+  </a>
+
+ 
+ 
+
+
+  <div #megaMenuOriginRef class="ltr:ml-2 rtl:mr-2">
+    <button *ngIf="isHorizontalLayout$ | async"
+            [fxHide]="mobileQuery"
+            (click)="openMegaMenu(megaMenuOriginRef)"
+            color="primary"
+            mat-button
+            type="button">Quick Access To ypur App
+      <ic-icon [icon]="icArrowDropDown" class="ltr:-mr-1 rtl:-ml-1" inline="true"></ic-icon>
+    </button>
+  </div>
+
+
+  <div *ngIf="(isVerticalLayout$ | async) && isNavbarInToolbar$ | async"
+       [fxHide]="mobileQuery"
+       class="px-gutter"
+       fxFlex="none"
+       fxLayout="row"
+       fxLayoutAlign="start center">
+    <p2p-navigation-item *ngFor="let item of navigationItems" [item]="item"></p2p-navigation-item>
+  </div>
+
+  <span fxFlex></span>
+
+  <div class="-mx-1 flex items-center">
+   
+
+    <div class="px-1">
+      <p2p-toolbar-notifications></p2p-toolbar-notifications>
+    </div>
+
+    <div class="px-1">
+      <button (click)="openQuickpanel()" mat-icon-button type="button">
+        <mat-icon [icIcon]="icBookmarks"></mat-icon>
+      </button>
+    </div>
+
+    <div class="px-1">
+      <a routerLink="/user/login" routerLinkActive="active">Login</a>
+     </div>
+
+    <div class="px-1">
+      <p2p-toolbar-user></p2p-toolbar-user>
+    </div>
+
+  </div>
+</div>
+
+<p2p-navigation *ngIf="(isVerticalLayout$ | async) && isNavbarBelowToolbar$ | async"
+                [fxHide]="mobileQuery"></p2p-navigation>

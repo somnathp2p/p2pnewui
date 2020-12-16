@@ -1,0 +1,9 @@
+.p2p-layout-ikaros {
+  --navigation-height: 0px;
+
+  &.p2p-style-default {
+    --toolbar-background: #{$sidenav-background};
+    --navigation-color: white;
+    --toolbar-color: white;
+  }
+}

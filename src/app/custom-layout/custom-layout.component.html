@@ -1,0 +1,24 @@
+<ng-template #sidenavRef>
+  <p2p-sidenav [collapsed]="sidenavCollapsed$ | async"></p2p-sidenav>
+</ng-template>
+
+<ng-template #toolbarRef>
+  <p2p-toolbar [hasShadow]="toolbarShadowEnabled$ | async"
+               [mobileQuery]="!(isDesktop$ | async)"
+               class="p2p-toolbar"></p2p-toolbar>
+</ng-template>
+
+<ng-template #footerRef>
+  <p2p-footer *ngIf="isFooterVisible$ | async" class="p2p-footer"></p2p-footer>
+</ng-template>
+
+<ng-template #quickpanelRef>
+  <p2p-quickpanel></p2p-quickpanel>
+</ng-template>
+
+<p2p-layout [footerRef]="footerRef"
+            [quickpanelRef]="quickpanelRef"
+            [sidenavRef]="sidenavRef"
+            [toolbarRef]="toolbarRef"></p2p-layout>
+
+
